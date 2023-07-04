@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "monster-cd4a6": {
+      "hosting": {
+        "testauth": [
+          "monster-cd4a6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "monster-cd4a6"
+  }
+}

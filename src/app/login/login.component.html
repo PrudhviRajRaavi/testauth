@@ -1,0 +1,120 @@
+<!-- <button (click)="loginInWithGoogle()">Login</button>
+<button (click)="login('raaviprudhviraj2@gmail.com', 'Reva5@Fire')">Login</button> -->
+<app-navbar></app-navbar>
+  <div class="login-page">
+    <mat-card class="mat-elevation-z12">
+      <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+        <mat-tab label="Sign In">
+          <mat-card-content>
+            <form [formGroup]="loginForm" #formDirective="ngForm">
+              <mat-form-field>
+                <input matInput placeholder="Email" required formControlName="email">
+                <mat-error>Email is required</mat-error>
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Password" type="password" required formControlName="password">
+                <mat-error >
+                  Password is required
+                </mat-error>
+              
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+              <button mat-raised-button color="primary" class="login-button" (click) = "onSubmit()">
+                Sign In
+              </button>
+              
+                <button mat-raised-button class="login-button" (click)="signInGoogle()">
+
+                    Login with Google 
+                    </button>
+  
+              
+            </form>
+          </mat-card-content>
+        </mat-tab>
+        <mat-tab label="Sign Up">
+          <mat-card-content>
+            <form action="" class="signup"  (ngSubmit)="register()" [formGroup]="signupForm">
+              <mat-form-field>
+                <input matInput formControlName="fname" placeholder="First Name" required name="username" ngModel >
+                <mat-icon matSuffix>perm_identity</mat-icon>
+                <mat-error>
+                  First Name is required
+                </mat-error>
+  
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="lname" placeholder="Last Name" required name="username" ngModel >
+                <mat-icon matSuffix>perm_identity</mat-icon>
+                <mat-error>
+                  Last Name is required
+                </mat-error>
+  
+              </mat-form-field>
+              
+             
+              <mat-form-field>
+                <input matInput formControlName="email" placeholder="Email" required name="email" >  
+                <mat-error>Email is required</mat-error>
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="password" placeholder="Password" type="password" required  name="password"
+                  >
+                <mat-error>
+                  Password is required
+                </mat-error>
+  
+                <mat-icon matSuffix>lock</mat-icon>
+  
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="rpassword" placeholder="Confirm Password" type="password" required  name="repassword">
+                <mat-error>
+                  Re-Enter Password is required
+                </mat-error>
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+              <button mat-raised-button color="primary" class="login-button">
+                Sign Up
+              </button>
+            </form>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+      <!-- <div>
+        <mat-icon> 
+            chevron_left
+        </mat-icon>
+      </div>
+      <mat-card-content>
+        <form [formGroup]="loginForm" #formDirective="ngForm" (ngSubmit)="onSubmit()">
+          <mat-form-field>
+            <input matInput placeholder="Email" required formControlName="email">
+            <mat-error *ngIf="email.invalid">Email is required</mat-error>
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password" type="password" required formControlName="password">
+            <mat-error *ngIf="password.errors && password.errors.required">
+              Password is required
+            </mat-error>
+            <mat-error *ngIf="password.errors && password.errors.minlength">
+              Password must be of length 6
+            </mat-error>
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+          <mat-checkbox>Remember Me!</mat-checkbox>
+          <button mat-raised-button color="primary" class="login-button" click>
+            Sign In
+          </button>
+  
+          <button mat-raised-button class="login-button">
+            Login with Google
+          </button>
+        </form>
+      </mat-card-content> -->
+  
+    </mat-card>
+  </div>

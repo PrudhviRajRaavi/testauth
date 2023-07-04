@@ -1,0 +1,88 @@
+
+<app-navbar></app-navbar>
+<!-- <mat-card class="profile-card">
+    <mat-card-header>
+      <div mat-card-avatar class="user-avatar">
+        <img [src]="user.photoURL" alt="User Photo">
+      </div>
+      <mat-card-title>Welcome, {{ user.displayName }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Email: {{ user.email }}</p>
+    </mat-card-content>
+  </mat-card> -->
+  <div class="profile-container">
+    <div class="user-info">
+      <div class="user-avatar">
+        <img [src]="user.photoURL" alt="User Photo">
+      </div>
+      <div class="user-details">
+        <h2 class="user-name">Welcome, {{ user.displayName }}</h2>
+        <p class="user-email">Email: {{ user.email }}</p>
+      </div>
+    </div>
+  </div>
+  
+<mat-card class="flight-info-card">
+   
+    <mat-toolbar class="mat-elevation-z8">
+
+        Enter Flight Details 
+        <!-- insert mat flight icon -->
+        <!-- <span class="material-symbols-outlined">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+            </span> -->
+            
+
+      </mat-toolbar>
+     
+    <form [formGroup]="flightDetailsForm" (ngSubmit)="submitForm()" autocomplete="off">
+        <mat-form-field appearance="fill">
+          <mat-label>Airline</mat-label>
+          <input matInput formControlName="airline" required>
+          <mat-error *ngIf="flightDetailsForm.controls.airline.errors?.required">
+            Airline is required
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Arrival Date</mat-label>
+          <input matInput type="date" formControlName="arrivalDate" required>
+          <mat-error *ngIf="flightDetailsForm.controls.arrivalDate.errors?.required">
+            Arrival Date is required
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Arrival Time</mat-label>
+          <input matInput type="time" formControlName="arrivalTime" required>
+          <mat-error *ngIf="flightDetailsForm.controls.arrivalTime.errors?.required">
+            Arrival Time is required
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Flight Number</mat-label>
+          <input matInput formControlName="flightNumber" required>
+          <mat-error *ngIf="flightDetailsForm.controls.flightNumber.errors?.required">
+            Flight Number is required
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Number of Guests</mat-label>
+          <input matInput type="number" formControlName="numOfGuests" required>
+          <mat-error *ngIf="flightDetailsForm.controls.numOfGuests.errors?.required">
+            Number of Guests is required
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Comments</mat-label>
+          <textarea matInput formControlName="comments"></textarea>
+        </mat-form-field>
+      
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </form>
+      
+</mat-card>

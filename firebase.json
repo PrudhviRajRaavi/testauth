@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "testauth",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
