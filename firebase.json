@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/MonsterDemo",
+    "public": "dist/testauth",
     "ignore": [
       "firebase.json",
       "**/.*",

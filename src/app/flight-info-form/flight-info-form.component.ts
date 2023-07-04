@@ -49,9 +49,9 @@ export class FlightInfoFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onDestroy() {
-    localStorage.removeItem('user');
-    this.authService.logout();
-  }
+  // onDestroy() {
+  //   localStorage.removeItem('user');
+  //   this.authService.logout();
+  // }
 
 }

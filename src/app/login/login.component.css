@@ -12,6 +12,30 @@
     background-size: cover;
     overflow-y: hidden;
   }
+  /* Media queries for main card below 500px */
+    @media only screen and (max-width: 500px) {
+        .mat-elevation-z12 {
+        width: 70%;
+        margin: 10% auto;
+        border-radius: 8px;
+        }
+    }
+    /* Media queries for above 500px and below 770px  */
+    @media only screen and (min-width: 500px) and (max-width: 770px) {
+        .mat-elevation-z12 {
+        width: 50%;
+        margin: 10% auto;
+        border-radius: 8px;
+        }
+    }
+   
+    
+  /* .mainCard{
+    width: 50%;
+    margin: 10% auto;
+    border-radius: 8px;
+  } */
+
   mat-toolbar {
     background: #004a9f;
     color: white;

@@ -5,50 +5,42 @@ import { switchMap } from 'rxjs/operators';
 import { User } from '../services/user.model';
 import { Auth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { AuthGuard } from './auth.guard';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   
   user$ : Observable<User> | undefined
   constructor(private router: Router, private auth: Auth, private firestore : Firestore) {
-    // Track the current authentication state (for example, after a refresh) from au
     this.auth.onAuthStateChanged((user) => {
+      console.log("Auth State Changed",user);
       if (user) {
         // Logged in
-        this.loggedInSubject.next(true);
+        localStorage.setItem('user', JSON.stringify(user));
+        JSON.parse(localStorage.getItem('user')!);
       } else {
         // Logged out
-        this.loggedInSubject.next(false);
+        localStorage.setItem('user', 'null');
+        JSON.parse(localStorage.getItem('user')!);
       } 
     });
-    // this.user$ = this.auth.currentUser.pipe(
-    //   switchMap((user) => {
-    //     if (user) {
-    //       // Logged in
-    //       return of(user);
-    //     } else {
-    //       // Logged out
-    //       return of(null);
-    //     }
-    //   } )
-    // );
    }
 
-  isLoggedIn(): Observable<boolean> {
-    return this.loggedInSubject.asObservable();
+  isLoggedIn() {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null && user.emailVerified !== false ? true : false;
   }
 
   login(email: string, password: string) {
     // Perform login logic and set the login status
     signInWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user);
-        // Store user in local storage
-        localStorage.setItem('user', JSON.stringify(user));
+        // // Signed in 
+        // const user = userCredential.user;
+        // console.log(user);
+        // // Store user in local storage
+        // localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/flight-info-form']);
         // this.authService.login();
       }
@@ -57,7 +49,6 @@ export class AuthService {
         const errorMessage = error.message;
         alert(errorMessage);
       } );
-    this.loggedInSubject.next(true);
   }
 
   async signInWithGoogle(){
@@ -80,18 +71,6 @@ export class AuthService {
       localStorage.setItem('user', JSON.stringify(user));
       // Add user profile to database
       this.router.navigate(['/flight-info-form']);
-      this.loggedInSubject.next(true);
-      // const userRef = collection(this.firestore, 'users');
-      // var payload = {firstName: user.displayName, lastName: user.displayName, email: user.email, user};
-      
-      // // Serialize the payload object to firestore object
-      // payload = JSON.parse(JSON.stringify(payload));
-      // addDoc(userRef, payload).then(() => {
-      //   console.log('User profile added');
-      // }
-      // ).catch((error) => {
-      //   console.log(error);
-      // });
     
       
       }
@@ -110,9 +89,9 @@ export class AuthService {
   logout() {
     // Remove tokens and user data and set the login status to false
     localStorage.removeItem('user');
-    this.loggedInSubject.next(false);
     this.auth.signOut().then(() => {
       // Sign-out successful.
+      this.router.navigate(['/login']);
       console.log('Sign out successful');
     }).catch((error) => {
       // An error happened.
