@@ -38,11 +38,12 @@ export class FlightDetailsService {
 }
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-dialog',
   templateUrl: 'dialog.component.html',
- 
 })
 export class DialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}

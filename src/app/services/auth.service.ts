@@ -18,7 +18,9 @@ export class AuthService {
       if (user) {
         // Logged in
         localStorage.setItem('user', JSON.stringify(user));
+        this.router.navigate(['/flight-info-form']);
         JSON.parse(localStorage.getItem('user')!);
+        
       } else {
         // Logged out
         localStorage.setItem('user', 'null');
@@ -29,7 +31,7 @@ export class AuthService {
 
   isLoggedIn() {
     const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null && user.emailVerified !== false ? true : false;
+    return user !== null  ? true : false;
   }
 
   login(email: string, password: string) {

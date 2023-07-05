@@ -41,6 +41,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DialogComponent, FlightDetailsService } from '../services/flight-details.service';
+import { LogoutDialogComponent } from '../navbar/navbar.component';
 
 const MaterialComponents = [
   MatAutocompleteModule,
@@ -82,13 +83,14 @@ const MaterialComponents = [
 ];
 
 @NgModule({
+  declarations: [DialogComponent, LogoutDialogComponent],
   imports: [
     MaterialComponents
   ],
   exports: [
     MaterialComponents
   ],
-  entryComponents: [DialogComponent], // Add dialog component to entryComponents array
+  entryComponents: [DialogComponent, LogoutDialogComponent], // Add dialog component to entryComponents array
   providers: [FlightDetailsService],
 })
 export class MaterialModule { }
